@@ -40,7 +40,7 @@ df = df.sort_values(
 
 toplam =df["Kalan (g)"].sum()
 df["Miktar (%)"] = 100 * df["Kalan (g)"] / toplam
-df["Kümülatif Elek Altı"] = (df["Miktar (%)"].iloc[::-1].cumsum().iloc[::-1])
+df["Kümülatif Elek Altı"] = (df["Miktar (%)"].iloc[::-1].cumsum().iloc[::-1].shift(-1).fillna(0))
 
 x=df["Elek Boyutu (mm)"].to_numpy(dtype=float)
 y=df["Kümülatif Elek Altı"].to_numpy(dtype=float)
